@@ -1,5 +1,7 @@
 # URL Short API
 
+REST API for URL shortening built with NestJS and PostgreSQL. Allows creating, retrieving, updating and deleting short URLs, as well as tracking the access count for each one.
+
 ## Project Structure
 
 ```
@@ -73,16 +75,19 @@ model Short {
 }
 ```
 
-TypeScript interface:
+TypeScript classes:
 
 ```typescript
-interface Short {
+class ShortResponse {
   id: string;
   url: string;
   shortCode: string;
   createdAt: Date;
   updatedAt: Date;
-  accessCount?: number;
+}
+
+class Short extends ShortResponse {
+  accessCount: number;
 }
 ```
 
@@ -93,10 +98,14 @@ interface Short {
 
 ### Endpoints
 - `POST /shorten` - Create a new short url
-- `GET /shorten/:id` - Get short by ID
-- `GET /shorten/:id/stats` - Get stats
-- `PUT /shorten/:id` - Update a short
-- `DELETE /shorten/:id` - Delete a short
+- `GET /shorten/:shortCode` - Get short by short code
+- `GET /shorten/:shortCode/stats` - Get stats
+- `PUT /shorten/:shortCode` - Update a short
+- `DELETE /shorten/:shortCode` - Delete a short
+
+### Swagger UI
+
+Interactive API documentation is available at `http://localhost:3000/docs`.
 
 ## Sample API Usage
 
@@ -109,19 +118,19 @@ curl -X POST http://localhost:3000/shorten \
 
 ### Update a short
 ```bash
-curl -X PUT http://localhost:3000/shorten/1 \
+curl -X PUT http://localhost:3000/shorten/<shortCode> \
   -H "Content-Type: application/json" \
   -d '{"url": "http://www.google.com"}'
 ```
 
 ### Delete a short
 ```bash
-curl -X DELETE http://localhost:3000/shorten/1
+curl -X DELETE http://localhost:3000/shorten/<shortCode>
 ```
 
 ### Get a short stats
 ```bash
-curl -X GET http://localhost:3000/shorten/1/stats
+curl -X GET http://localhost:3000/shorten/<shortCode>/stats
 ```
 
 ## Installation and Setup

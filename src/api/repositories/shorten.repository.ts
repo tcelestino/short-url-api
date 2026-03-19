@@ -8,7 +8,7 @@ export class ShortenRepository {
 
   async findOne(id: string): Promise<Short | null> {
     const record = await this.prisma.short.findUnique({
-      where: { id: parseInt(id, 10) },
+      where: { shortCode: id },
     });
     if (!record) return null;
     return this.toEntity(record);
@@ -17,7 +17,7 @@ export class ShortenRepository {
   async findOneAndIncrementAccess(id: string): Promise<Short | null> {
     try {
       const record = await this.prisma.short.update({
-        where: { id: parseInt(id, 10) },
+        where: { shortCode: id },
         data: { accessCount: { increment: 1 } },
       });
       return this.toEntity(record);
@@ -36,7 +36,7 @@ export class ShortenRepository {
   async update(id: string, updateShortDto: UpdateShortDTO): Promise<Short | null> {
     try {
       const record = await this.prisma.short.update({
-        where: { id: parseInt(id, 10) },
+        where: { shortCode: id },
         data: { url: updateShortDto.url, updatedAt: new Date() },
       });
       return this.toEntity(record);
@@ -48,7 +48,7 @@ export class ShortenRepository {
   async remove(id: string): Promise<boolean> {
     try {
       await this.prisma.short.delete({
-        where: { id: parseInt(id, 10) },
+        where: { shortCode: id },
       });
       return true;
     } catch {

@@ -1,11 +1,11 @@
-# URL Short API
+# shortener-api
 
 REST API for URL shortening built with NestJS and PostgreSQL. Allows creating, retrieving, updating and deleting short URLs, as well as tracking the access count for each one.
 
 ## Project Structure
 
 ```
-url-short-api/
+shortener-api/
 ├── src/
 │   ├── main.ts                    # Application entry point
 │   ├── app.module.ts              # Root application module

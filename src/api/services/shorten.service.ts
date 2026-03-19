@@ -14,15 +14,17 @@ export class ShortenService {
     if (!createShortDto.url || createShortDto.url.trim() === '') {
       throw new Error('URL is required');
     }
-    return this.shortenRepository.create(createShortDto);
+    const { accessCount: _, ...result } = await this.shortenRepository.create(createShortDto);
+    return result;
   }
 
   async getById(id: string): Promise<Short> {
-    const short = await this.shortenRepository.findOne(id);
+    const short = await this.shortenRepository.findOneAndIncrementAccess(id);
     if (!short) {
       throw new NotFoundException(`Short url with id ${id} not found`);
     }
-    return short;
+    const { accessCount: _, ...result } = short;
+    return result;
   }
 
   async update(id: string, updateShortDto: UpdateShortDTO): Promise<Short> {
@@ -30,7 +32,8 @@ export class ShortenService {
     if (!updatedShort) {
       throw new NotFoundException(`Short url with id ${id} not found`);
     }
-    return updatedShort;
+    const { accessCount: _, ...result } = updatedShort;
+    return result;
   }
 
   async delete(id: string): Promise<void> {

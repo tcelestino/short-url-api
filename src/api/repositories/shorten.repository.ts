@@ -14,6 +14,18 @@ export class ShortenRepository {
     return this.toEntity(record);
   }
 
+  async findOneAndIncrementAccess(id: string): Promise<Short | null> {
+    try {
+      const record = await this.prisma.short.update({
+        where: { id: parseInt(id, 10) },
+        data: { accessCount: { increment: 1 } },
+      });
+      return this.toEntity(record);
+    } catch {
+      return null;
+    }
+  }
+
   async create(createShortDto: CreateShortDTO): Promise<Short> {
     const record = await this.prisma.short.create({
       data: { url: createShortDto.url },

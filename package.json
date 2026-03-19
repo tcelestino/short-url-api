@@ -1,7 +1,7 @@
 {
   "name": "url-short-api",
   "version": "0.0.1",
-  "description": "",
+  "description": "RESTful API for URL shortening",
   "author": "Tiago Celestino",
   "private": true,
   "license": "UNLICENSED",
@@ -27,6 +27,7 @@
     "@nestjs/common": "^11.1.17",
     "@nestjs/core": "^11.1.17",
     "@nestjs/platform-express": "^11.1.17",
+    "@nestjs/swagger": "^11.2.6",
     "@prisma/adapter-pg": "7.5.0",
     "@prisma/client": "^7.5.0",
     "dotenv": "^17.3.1",

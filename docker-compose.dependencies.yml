@@ -6,14 +6,14 @@ services:
     environment:
       POSTGRES_USER: ${DATABASE_USER:-postgres}
       POSTGRES_PASSWORD: ${DATABASE_PASSWORD:-postgres}
-      POSTGRES_DB: ${DATABASE_NAME:-url_short}
+      POSTGRES_DB: ${DATABASE_NAME:-shorten_url}
     volumes:
       - postgres_data:/var/lib/postgresql/data
     healthcheck:
       test:
         [
           'CMD-SHELL',
-          'pg_isready -U ${DATABASE_USER:-postgres} -d ${DATABASE_NAME:-url_short}',
+          'pg_isready -U ${DATABASE_USER:-postgres} -d ${DATABASE_NAME:-shorten_url}',
         ]
       interval: 10s
       timeout: 5s

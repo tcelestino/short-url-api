@@ -61,6 +61,8 @@ shortener-api/
 │   ├── app.module.ts              # Root application module
 │   ├── app.controller.ts          # Root application controller
 │   ├── app.service.ts             # Root application service
+│   ├── generated/                 # Application entry point
+│   │   ├── prisma/                # Prisma generated client
 │   └── api/                      # Api domain module
 │       ├── entities/
 │       │   └── short.entity.ts     # Short entity and DTOs
@@ -78,8 +80,6 @@ shortener-api/
 │   └── integration/               # Integration tests
 ├── prisma/
 │   └── schema.prisma              # Prisma schema (Short model)
-├── generated/
-│   └── prisma/                    # Prisma generated client
 ├── prisma.config.ts               # Prisma configuration
 ├── package.json                   # Project dependencies
 ├── tsconfig.json                  # TypeScript configuration

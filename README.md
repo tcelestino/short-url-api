@@ -90,26 +90,30 @@ shortener-api/
 └── README.md                      # Project documentation
 ```
 
-## Architecture Layers
+## Architecture 
 
-### 1. **Entity Layer** (`short.entity.ts`)
+![architecture](https://github.com/tcelestino/shortener-api/blob/main/docs/architecture.jpg)
+
+### Layers
+
+1. **Entity Layer** (`short.entity.ts`)
 - Defines the Short interface and Data Transfer Objects (DTOs)
 - Contains data structure definitions
 
-### 2. **Infrastructure Layer** (`infra/database.ts`)
+2. **Infrastructure Layer** (`infra/database.ts`)
 - Initializes and exports the Prisma client
 - Uses `@prisma/adapter-pg` for PostgreSQL connection via `DATABASE_URL`
 
-### 3. **Repository Layer** (`shorten.repository.ts`)
+3. **Repository Layer** (`shorten.repository.ts`)
 - Handles data persistence and retrieval
 - Implements CRUD operations
 
-### 4. **Service Layer** (`shorten.service.ts`)
+4. **Service Layer** (`shorten.service.ts`)
 - Contains business logic
 - Validates data and enforces business rules
 - Acts as an intermediary between controller and repository
 
-### 5. **Controller Layer** (`shorten.controller.ts`)
+5. **Controller Layer** (`shorten.controller.ts`)
 - Handles HTTP requests and responses
 - Defines API endpoints and routing
 - Validates input parameters

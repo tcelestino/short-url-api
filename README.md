@@ -2,6 +2,50 @@
 
 REST API for URL shortening built with NestJS and PostgreSQL. Allows creating, retrieving, updating and deleting short URLs, as well as tracking the access count for each one.
 
+## Installation and Setup
+
+1. Clone the repository
+
+```bash
+git clone git@github.com:tcelestino/shortener-api.git
+```
+
+2. Copy the environment file and adjust the values if needed:
+```bash
+cp .env.example .env
+```
+
+### Local
+
+1. Install dependencies:
+```bash
+npm install
+```
+
+2. Start service dependencies (PostgreSQL):
+```bash
+docker-compose -f docker-compose.dependencies.yml up -d
+```
+
+3. Run database migrations:
+```bash
+npm run prisma:migrate
+```
+
+4. Start the application in development mode:
+```bash
+npm run start:dev
+```
+
+### Docker
+
+1. Build and start all services (API + PostgreSQL):
+```bash
+docker compose up --build
+```
+
+The API will be available at `http://localhost:3000` and PostgreSQL at `localhost:5432`.
+
 ## Project Structure
 
 ```
@@ -142,43 +186,6 @@ curl -X DELETE http://localhost:3000/shorten/<shortCode>
 curl -X GET http://localhost:3000/shorten/<shortCode>/stats
 ```
 
-## Installation and Setup
-
-Copy the environment file and adjust the values if needed:
-```bash
-cp .env.example .env
-```
-
-### Local
-
-1. Install dependencies:
-```bash
-npm install
-```
-
-2. Start service dependencies (PostgreSQL):
-```bash
-docker-compose -f docker-compose.dependencies.yml up -d
-```
-
-3. Run database migrations:
-```bash
-npm run prisma:migrate
-```
-
-4. Start the application in development mode:
-```bash
-npm run start:dev
-```
-
-### Docker
-
-1. Build and start all services (API + PostgreSQL):
-```bash
-docker compose up --build
-```
-
-The API will be available at `http://localhost:3000` and PostgreSQL at `localhost:5432`.
 
 ## Available Scripts
 

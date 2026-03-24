@@ -1,5 +1,5 @@
 {
-  "name": "url-short-api",
+  "name": "shortner-api",
   "version": "0.0.1",
   "description": "RESTful API for URL shortening",
   "author": "Tiago Celestino",
